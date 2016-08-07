@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://dattaprasad.com/onlineshopping" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="onlineshopping"
+	targetNamespace="http://dattaprasad.com/onlineshopping" xmlns:xsdns="http://dattaprasad.thakur.com/shipping.xsd">
+	<wsdl:types>
+		<xs:schema targetNamespace="http://dattaprasad.com/onlineshopping"
+			elementFormDefault="qualified">
+			<xsd:import namespace="http://dattaprasad.thakur.com/shipping.xsd"
+				schemaLocation="shipping.xsd" />
+			<xsd:element name="item" type=""/>
+				
+			
+			<xsd:element name="itemorderdesc" type="xsdns:item" />
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="getItemmsg">
+		<wsdl:part name="param"  element="tns:item" />
+	</wsdl:message>
+	<wsdl:message name="getItemResponse">
+		<wsdl:part name="response" element="tns:itemorderdesc"></wsdl:part>
+	</wsdl:message>
+
+	<wsdl:portType name="itemdescriptionporttype">
+		<wsdl:operation name="getitemdesc">
+			<wsdl:input message="tns:getItemmsg" />
+			<wsdl:output message="tns:getItemResponse" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<!-- Abstract portion of the WSDL is over and physical portion starts here -->
+
+	<wsdl:binding name="itemdescriptionbinding" type="itemdescriptionporttype">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="getitemdescopr">
+			<soap:operation soapAction="urn:getitemdesc" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="itemdescriptionservice">
+		<wsdl:port name="itemdescriptionport" binding="tns:itemdescriptionbinding">
+			<soap:address location="http://localhost:8080/services/" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

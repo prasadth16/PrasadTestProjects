@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.prasad.thakur/Order"
+	xmlns:tns="http://www.prasad.thakur/Order" elementFormDefault="qualified">
+	<element name="order" type="tns:Order" />
+	<complexType name="Order">
+		<sequence>
+			<element name="item-id" type="tns:ID" />
+			<element name="order-date" type="date" />
+			<element name="category" type="tns:ctgry" />
+			<element name="shipping" type="tns:shippingdetail" />
+		</sequence>
+	</complexType>
+	<complexType name="shippingdetail">
+		<sequence>
+			<element name="shipping-date" type="date" />
+			<element name="expected-del-dt" type="date" />
+			<element name="shipping-method" type="string" />
+			<element name="shipping-address" type="tns:address" />
+		</sequence>
+	</complexType>
+	<complexType name="address">
+		<sequence>
+			<element name="addressln1" type="string" />
+			<element name="addressln2" type="string" />
+			<element name="state" type="string" />
+			<element name="zip" type="tns:zipcode" />
+			<element name="country" type="string" />
+		</sequence>
+	</complexType>
+	<simpleType name="ID">
+		<restriction base="int">
+			<pattern value="[0-9]*" />
+		</restriction>
+	</simpleType>
+	<simpleType name="ctgry">
+		<restriction base="string">
+			<enumeration value="E" />
+			<enumeration value="K" />
+			<enumeration value="B" />
+			<enumeration value="G" />
+		</restriction>
+	</simpleType>
+	<simpleType name="zipcode">
+	<restriction base="string">
+	<maxLength value="5"/>
+	<pattern value="[0-9]*"/>
+	</restriction>
+	</simpleType>
+
+</schema>

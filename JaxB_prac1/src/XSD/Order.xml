@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:order xmlns:tns="http://www.prasad.thakur/Order" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.prasad.thakur/Order Order.xsd ">
+  <tns:item-id>123</tns:item-id>
+  <tns:order-date>2016-02-24</tns:order-date>
+  <tns:category>E</tns:category>
+  <tns:shipping>
+    <tns:shipping-date>2016-02-25</tns:shipping-date>
+    <tns:expected-del-dt>2001-03-01</tns:expected-del-dt>
+    <tns:shipping-method>Regular</tns:shipping-method>
+    <tns:shipping-address>
+      <tns:addressln1>19539 Caravan Drive</tns:addressln1>
+      <tns:addressln2>Germantown</tns:addressln2>
+      <tns:state>MD</tns:state>
+      <tns:zip>20874</tns:zip>
+      <tns:country>US</tns:country>
+    </tns:shipping-address>
+  </tns:shipping>
+</tns:order>

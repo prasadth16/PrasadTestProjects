@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://dattaprasad.thakur.com/shipping.xsd"
+	xmlns:tns="http://dattaprasad.thakur.com/shipping.xsd" elementFormDefault="qualified">
+	<!-- <element name="item_detail" type="tns:item" /> -->
+	<complexType name="item">
+		<all>
+			<element name="quantity" type="int" />
+			<element name="price" type="float" />
+			<element name="shipping_details" type="tns:shipping" />
+			<element name="payment_option" type="tns:payment_details" />
+		</all>
+		<attribute name="ID" type="int" />
+	</complexType>
+
+	<complexType name="shipping">
+		<sequence>
+			<element name="address" type="tns:address" />
+			<element name="shipping_date" type="date" />
+			<choice>
+				<element name="expected_del_date" type="date" />
+			</choice>
+		</sequence>
+	</complexType>
+	<complexType name="address">
+		<sequence>
+			<element name="street_number" type="string" />
+			<element name="street_name" type="string" />
+			<element name="city" type="string" />
+			<element name="state_code" type="string" />
+			<element name="zip_code" type="tns:zip_restriction" />
+		</sequence>
+	</complexType>
+
+	<complexType name="payment_details">
+		<choice>
+			<element name="Cash_on_delivery" type="boolean" />
+			<element name="credit_card" type="tns:crdtcard_info" />
+		</choice>
+	</complexType>
+	<complexType name="crdtcard_info">
+		<sequence>
+			<element name="card_number" type="string" />
+			<element name="pin" type="string" />
+			<element name="exp_dt_mnth" type="string" />
+		</sequence>
+	</complexType>
+	 <simpleType name="zip_restriction">
+		<restriction base="string">
+			<maxLength value="6" />
+		 	<pattern value="[0-9]" />
+		</restriction>
+	</simpleType>
+</schema>
